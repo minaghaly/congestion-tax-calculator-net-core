@@ -1,0 +1,49 @@
+1- I simplified the validation rules into 3 steps:
+	- First I excluded the toll free days from th working dates list 
+	- Then I have categorized the list by Period between dates (60 minutes), and applied the fees for each category be choosing the maximum fee.
+	- Finally, I have categorized the working dates list by Day Date and applied the maximum 60 SEK per day rule.
+
+
+2- I Received Vehicle type in parameters as Enum to reduce the development time 
+	as if we are gonna use interitance we should also create the vactory to create the vehcle from it's type because we have to receive the parameter in HTTP request as string or enum.
+
+3- I have created Unit Test project and 5 test cases to cover all expected scenarios.
+
+4- I have created repositories to all data the meant to be retrieved from database, but didn't create the database to stick with the 4 hours development time.
+
+5- The rules can be easly changed and also the configurations such as the weekend days, period in minutes between datas in single charge rule and the maximum day charge.
+
+6- A lot of enhancements enhancements could be done such as adding some input validations, adding a middleware to wrap the response, adding swagger to simplify testing, etc...
+
+7- Here is HTTP example and the expected value is 89
+
+POST /api/CongestionTax/CalculateTax HTTP/1.1
+Host: localhost:22852
+Content-Type: application/json
+Content-Length: 627
+
+{
+    "VehicleType": 6,
+    "Dates": [
+        "2013-01-14T21:00:00",
+        "2013-01-15T21:00:00",
+        "2013-02-07T06:23:27",
+        "2013-02-07T15:27:00",
+        "2013-02-08T06:27:00",
+        "2013-02-08T06:20:27",
+        "2013-02-08T14:35:00",
+        "2013-02-08T15:29:00",
+        "2013-02-08T15:47:00",
+        "2013-02-08T16:01:00",
+        "2013-02-08T16:48:00",
+        "2013-02-08T17:49:00",
+        "2013-02-08T18:29:00",
+        "2013-02-08T18:35:00",
+        "2013-03-25T14:25:00",
+        "2013-03-26T14:25:00",
+        "2013-03-28T14:07:27",
+        "2013-03-30T14:07:27"
+
+    ]
+}
+
